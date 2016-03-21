@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
 
 int main()
 {
@@ -18,6 +19,7 @@ int main()
 			system("mpc play");
 			break;
 		}
+		sleep(5);
 	}
 	return(0);
 }
