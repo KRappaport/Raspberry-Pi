@@ -7,8 +7,8 @@ int main()
 
 	time_t test;
         struct tm *info;
-        int wake_hour = 9;
-        int wake_minute = 50;
+        int wake_hour = 7;
+        int wake_minute = 0;
 	FILE *fp;
         char c[100];
 
@@ -22,6 +22,7 @@ int main()
 				system("mpc stop");
 				sleep(1);
 				system("mpc play");
+				sleep(3);
 				fp = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 				fscanf(fp, "%s", c);
 			}while(strcmp(c, "closed") == 0);
