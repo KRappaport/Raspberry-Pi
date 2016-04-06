@@ -2,3 +2,4 @@ Alarm/*.exe
 Alarm/Alarm_Clock2.c
 Alarm/timetest.c
 Alarm/*.txt
+Alarm/set
