@@ -30,7 +30,7 @@ int main()
 				sleep(3);
 				sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 				fscanf(sound, "%s", sound_check);
-			}while(strcmp(c, "closed") == 0);
+			}while(strcmp(sound_check, "closed") == 0);
 			break;
 		}
 		sleep(5);
