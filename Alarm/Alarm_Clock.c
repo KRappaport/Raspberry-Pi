@@ -9,7 +9,7 @@ int main()
 	time_t test;
         struct tm *info;
         int wake_hour = 6;
-        int wake_minute = 30;
+        int wake_minute = 0;
 	FILE *fp;
         char c[100];
 
