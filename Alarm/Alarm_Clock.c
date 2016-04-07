@@ -19,8 +19,8 @@ int main()
 	{
 		hour = fopen("hour.txt", "r");
 		minute = fopen("minute.txt", "r");
-		fscanf(hour, "%d", wake_hour);
-		fscanf(minute, "%d", wake_minute);
+		fscanf(hour, "%d", &wake_hour);
+		fscanf(minute, "%d", &wake_minute);
 		fclose(hour);
 		fclose(minute);
 		test = time(NULL);
