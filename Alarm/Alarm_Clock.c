@@ -19,6 +19,8 @@ int main()
 		minute = fopen("minute.txt", "r");
 		fscanf(hour, "%d", wake_hour);
 		fscanf(minute, "%d", wake_minute);
+		fclose(hour);
+		fclose(minute);
 		test = time(NULL);
 		info = localtime(&test);
 		if(info->tm_hour==wake_hour && info->tm_min==wake_minute)
@@ -30,6 +32,7 @@ int main()
 				sleep(3);
 				sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 				fscanf(sound, "%s", sound_check);
+				fclose(sound);
 			}while(strcmp(sound_check, "closed") == 0);
 			break;
 		}
