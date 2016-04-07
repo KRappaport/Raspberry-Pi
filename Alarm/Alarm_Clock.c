@@ -10,7 +10,9 @@ int main()
 	struct tm *info;
 	int wake_hour;
 	int wake_minute;
-	FILE *sound, *hour, *minute;
+	FILE *sound;
+	FILE *hour;
+	FILE *minute;
 	char sound_check[100];
 
 	while(1)
