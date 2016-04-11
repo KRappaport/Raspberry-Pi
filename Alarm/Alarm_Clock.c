@@ -10,9 +10,11 @@ int main()
 	struct tm *info;
 	int wake_hour;
 	int wake_minute;
+	int repeat_boolean;
 	FILE *sound;
 	FILE *hour;
 	FILE *minute;
+	FILE *repeat;
 	char sound_check[100];
 
 	while(1)
@@ -31,12 +33,15 @@ int main()
 				system("mpc stop");
 				sleep(1);
 				system("mpc play");
-				sleep(3);
+				sleep(5);
 				sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 				fscanf(sound, "%s", sound_check);
 				fclose(sound);
 			}while(strcmp(sound_check, "closed") == 0);
-			break;
+			repeat = fopen("repeat.txt", "r");
+			fscanf(repeat, "%d", &repeat_boolean);
+			if(!repeat_boolean)
+				break;
 		}
 		sleep(5);
 	}
