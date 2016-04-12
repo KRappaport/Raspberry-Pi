@@ -40,6 +40,7 @@ int main()
 			}while(strcmp(sound_check, "closed") == 0);
 			repeat = fopen("repeat.txt", "r");
 			fscanf(repeat, "%d", &repeat_boolean);
+			fclose(repeat);
 			if(!repeat_boolean)
 				break;
 		}
