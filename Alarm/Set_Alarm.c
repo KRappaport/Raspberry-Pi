@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
     printf("Enter alarm time: ");
     scanf("%d", &hr);
     scanf("%d", &min);
-    printf("Choose if alarm should repeat (1 = repeat, 0 = don't repeat): ", );
+    printf("Choose if alarm should repeat (1 = repeat, 0 = don't repeat): ");
     scanf("%d", &rpt);
     printf("OK alarm is set.\n");
 
