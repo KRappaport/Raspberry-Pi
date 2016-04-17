@@ -33,7 +33,7 @@ int main()
 				system("mpc stop");
 				sleep(1);
 				system("mpc play");
-				sleep(5);
+				sleep(6);
 				sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 				fscanf(sound, "%s", sound_check);
 				fclose(sound);
