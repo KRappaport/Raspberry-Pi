@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
     FILE *sound;
     char sound_check[100];
 
-    printf("Input sleep time: ", );
+    printf("Input sleep time: ");
     scanf("%d", &hour);
     scanf("%d", &minute);
 
