@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+void mpd_play(void);
+
 int main()
 {
 	time_t test;
@@ -11,11 +13,9 @@ int main()
 	int wake_hour;
 	int wake_minute;
 	int repeat_boolean;
-	FILE *sound;
 	FILE *hour;
 	FILE *minute;
 	FILE *repeat;
-	char sound_check[100];
 
 	while(1)
 	{
@@ -29,15 +29,7 @@ int main()
 		info = localtime(&test);
 		if(info->tm_hour==wake_hour && info->tm_min==wake_minute)
 		{
-			do{
-				system("mpc stop");
-				sleep(1);
-				system("mpc play");
-				sleep(6);
-				sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
-				fscanf(sound, "%s", sound_check);
-				fclose(sound);
-			}while(strcmp(sound_check, "closed") == 0);
+			mpd_play();
 			repeat = fopen("repeat.txt", "r");
 			fscanf(repeat, "%d", &repeat_boolean);
 			fclose(repeat);
@@ -47,4 +39,21 @@ int main()
 		sleep(5);
 	}
 	return(0);
+}
+
+void mpd_play(void){
+
+	FILE *sound;
+	char sound_check[100];
+
+	do{
+		system("mpc stop");
+		sleep(1);
+		system("mpc play");
+		sleep(6);
+		sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
+		fscanf(sound, "%s", sound_check);
+		fclose(sound);
+	}while(strcmp(sound_check, "closed") == 0);
+
 }
