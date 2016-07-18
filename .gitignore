@@ -6,3 +6,5 @@ Alarm/set
 Alarm/Alarm_Clock
 Alarm/Set_Alarm
 Sleep
+*.txt
+GVoice_Call.c

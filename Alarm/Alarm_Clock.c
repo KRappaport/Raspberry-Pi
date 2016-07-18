@@ -19,8 +19,8 @@ int main()
 
 	while(1)
 	{
-		hour = fopen("hour.txt", "r");
-		minute = fopen("minute.txt", "r");
+		hour = fopen("~Raspberry-Pi/Alarm/hour.txt", "r");
+		minute = fopen("~Raspberry-Pi/Alarm/minute.txt", "r");
 		fscanf(hour, "%d", &wake_hour);
 		fscanf(minute, "%d", &wake_minute);
 		fclose(hour);
@@ -30,7 +30,7 @@ int main()
 		if(info->tm_hour==wake_hour && info->tm_min==wake_minute)
 		{
 			mpd_play();
-			repeat = fopen("repeat.txt", "r");
+			repeat = fopen("~Raspberry-Pi/Alarm/repeat.txt", "r");
 			fscanf(repeat, "%d", &repeat_boolean);
 			fclose(repeat);
 			if(!repeat_boolean)
@@ -50,7 +50,7 @@ void mpd_play(void){
 		system("mpc stop");
 		sleep(1);
 		system("mpc play");
-		sleep(6);
+		sleep(10);
 		sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 		fscanf(sound, "%s", sound_check);
 		fclose(sound);
