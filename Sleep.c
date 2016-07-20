@@ -10,12 +10,30 @@ void mpd_play(void);
 
 int main(int argc, char const *argv[]) {
 
-    int hour, minute;
+    int hour=0, minute=0, i;
     long unsigned int sleep_time;
 
-    printf("Input sleep time: ");
-    scanf("%d", &hour);
-    scanf("%d", &minute);
+    if(argc > 1){
+        while(--argc>0 && (*++argv)[0] == '-'){
+            switch (*argv[1]) {
+                case 'h':
+                    hour = atoi(*++argv);
+                    break;
+                case 'm':
+                    minute = atoi(*++argv);
+                    break;
+                default:
+                    printf("'\'%s\' is an invalid :\n", *argv[1]);
+                    argc = 0;
+                    break;
+            }
+        }
+    }
+    if(minute == 0 && hour == 0){
+        printf("Input sleep time: ");
+        scanf("%d", &hour);
+        scanf("%d", &minute);
+    }
 
     sleep_time = (hour*HOUR) + (minute*MINUTE);
 
@@ -37,7 +55,7 @@ void mpd_play(void){
 		system("mpc stop");
 		sleep(1);
 		system("mpc play");
-		sleep(6);
+		sleep(10);
 		sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 		fscanf(sound, "%s", sound_check);
 		fclose(sound);
