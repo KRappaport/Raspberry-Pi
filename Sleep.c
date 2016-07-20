@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
                     hour = atoi((*++argv));
                     break;
                 case 'm':
-                    minute = atoi((*++argv);
+                    minute = atoi((*++argv));
                     break;
                 default:
                     printf("'\'%s\' is an invalid :\n", (*argv)[1]);
