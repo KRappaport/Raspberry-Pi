@@ -13,6 +13,8 @@ int main(int argc, char const *argv[]) {
     int hour=0, minute=0, i;
     long unsigned int sleep_time;
 
+    printf("%d\n", argc);
+
     if(argc > 1){
         while(--argc>0 && (*++argv)[0] == '-'){
             switch ((*argv)[1]) {
