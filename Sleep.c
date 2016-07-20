@@ -13,16 +13,16 @@ int main(int argc, char const *argv[]) {
     int hour=0, minute=0, i;
     long unsigned int sleep_time;
 
-    printf("%d\n", argc);
-
     if(argc > 1){
         while(--argc>0 && (*++argv)[0] == '-'){
             switch ((*argv)[1]) {
                 case 'h':
                     hour = atoi((*++argv));
+                    argc--;
                     break;
                 case 'm':
                     minute = atoi((*++argv));
+                    argc--;
                     break;
                 default:
                     printf("'\'%s\' is an invalid :\n", (*argv)[1]);
