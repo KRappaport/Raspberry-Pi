@@ -15,15 +15,15 @@ int main(int argc, char const *argv[]) {
 
     if(argc > 1){
         while(--argc>0 && (*++argv)[0] == '-'){
-            switch (*argv[1]) {
+            switch ((*argv)[1]) {
                 case 'h':
-                    hour = atoi(*++argv);
+                    hour = atoi((*++argv));
                     break;
                 case 'm':
-                    minute = atoi(*++argv);
+                    minute = atoi((*++argv);
                     break;
                 default:
-                    printf("'\'%s\' is an invalid :\n", *argv[1]);
+                    printf("'\'%s\' is an invalid :\n", (*argv)[1]);
                     argc = 0;
                     break;
             }
