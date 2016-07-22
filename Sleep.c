@@ -12,7 +12,10 @@ int main(int argc, char const *argv[]) {
 
     int hour=0, minute=0, i;
     long unsigned int sleep_time;
+    FILE *sound;
+    char sound_check[100];
 
+//  Checks command-line arguements.
     if(argc > 1){
         while(--argc>0 && (*++argv)[0] == '-'){
             switch ((*argv)[1]) {
@@ -31,18 +34,28 @@ int main(int argc, char const *argv[]) {
             }
         }
     }
+//  Asks for user input in the event that either no or invalid command-line arguements are supplied.
     if(minute == 0 && hour == 0){
         printf("Input sleep time: ");
         scanf("%d", &hour);
         scanf("%d", &minute);
     }
 
+//  Converts inputed hours and minutes to seconds.
     sleep_time = (hour*HOUR) + (minute*MINUTE);
 
-    mpd_play();
+//  Checks if music is already playing.
+    sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
+    fscanf(sound, "%s", sound_check);
+    fclose(sound);
+//  Calls mpd_play to turn on music if not already playing.
+    if (strcmp(sound_check, "closed") == 0) {
+        mpd_play();
+    }
 
+//  Pauses the program for the amount of time inputed by user.
     sleep(sleep_time);
-
+//  After which music is stopped.
     system("mpc stop");
 
     return(0);
