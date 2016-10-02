@@ -8,9 +8,9 @@ int main(int argc, char const *argv[])
     FILE *repeat;
     int hr, min, rpt;
 
-    hour = fopen("~Raspberry-Pi/Alarm/hour.txt", "w");
-    minute = fopen("~Raspberry-Pi/Alarm/minute.txt", "w");
-    repeat = fopen("~Raspberry-Pi/Alarm/repeat.txt", "w");
+    hour = fopen("~/Raspberry-Pi/Alarm/hour.txt", "w");
+    minute = fopen("~/Raspberry-Pi/Alarm/minute.txt", "w");
+    repeat = fopen("~/Raspberry-Pi/Alarm/repeat.txt", "w");
 
     printf("Enter alarm time: ");
     scanf("%d", &hr);
