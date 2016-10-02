@@ -4,6 +4,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+typedef struct alarm_profile
+{
+	int name_length;
+	char alarm_name[50];
+	short on-off;
+	short hour;
+	short minute;
+}ALARM
+
 void mpd_play(void);
 
 int main()
