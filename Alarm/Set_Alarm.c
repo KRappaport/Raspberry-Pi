@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
         printf("Please provide alarm name:\n");
         exit(1);
     }
-    sprintf(path, "~/Raspberry-Pi/Alarm/Profiles/%s", argv[i]);
+    sprintf(path, "/home/pi/Raspberry-Pi/Alarm/Profiles/%s", argv[i]);
     argc--;
     while (argc > 1) {
         i++;
@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     }
     strcat(path, ".alrm");
 
-    alarm_profile = fopen("~/Raspberry-Pi/Alarm/Profiles/Wake_Up.txt", "wb");
+    alarm_profile = fopen("/home/pi/Raspberry-Pi/Alarm/Profiles/Wake_Up.txt", "wb");
 
     printf("Turn alarm on or off (1 = on, 0 = off): ");
     scanf("%d", &on-off);
