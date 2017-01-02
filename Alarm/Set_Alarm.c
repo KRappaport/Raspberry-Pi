@@ -27,19 +27,19 @@ int main(int argc, char const *argv[])
     alarm_profile = fopen(path, "wb");
 
     printf("Turn alarm on or off (1 = on, 0 = off): ");
-    scanf("%d", &on_off);
+    scanf("%hd", &on_off);
     fwrite(&on_off, sizeof(short), 1, alarm_profile);
     putchar('\n');
 
     printf("Enter alarm hour (0-23): ");
-    scanf("%d", &alarm_time[0]);
+    scanf("%hd", &alarm_time[0]);
     putchar('\n');
     printf("Enter alarm minute (0-59): ");
-    scanf("%d", &alarm_time[1]);
+    scanf("%hd", &alarm_time[1]);
     putchar('\n');
     fwrite(alarm_time, sizeof(short), 2, alarm_profile);
     printf("Choose if alarm should repeat (1 = repeat, 0 = don't repeat): ");
-    scanf("%d", &rpt);
+    scanf("%hd", &rpt);
     fwrite(&rpt, sizeof(short), 1, alarm_profile);
     printf("OK alarm is set.\n");
 
