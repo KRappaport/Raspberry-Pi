@@ -8,7 +8,7 @@
 {
 	int name_length;
 	char alarm_name[50];
-	short on-off;
+	short on_off;
 	short hour;
 	short minute;
 }ALARM */
@@ -19,15 +19,15 @@ int main()
 {
 	time_t test;
 	//struct tm *info;
-	int on-off, alarm_time[2], rpt;
+	int on_off, alarm_time[2], rpt;
 	FILE *alarm_profile;
 
 	while(1)
 	{
 		alarm_profile = fopen("/home/pi/Raspberry-Pi/Alarm/Profiles/wake_up.alrm");
-		fread(&on-off, sizeof(short), 1, alarm_profile);
+		fread(&on_off, sizeof(short), 1, alarm_profile);
 		fread(alarm_time, sizeof(short), 2, alarm_profile);
-		fread(rpt, sizeof(short), 1, alarm_profile);
+		fread(&rpt, sizeof(short), 1, alarm_profile);
 		fclose(alarm_profile);
 		test = time(NULL);
 		info = localtime(&test);
