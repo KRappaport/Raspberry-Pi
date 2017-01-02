@@ -18,20 +18,20 @@ void mpd_play(void);
 int main()
 {
 	time_t test;
-	//struct tm *info;
+	struct tm *info;
 	int on_off, alarm_time[2], rpt;
 	FILE *alarm_profile;
 
 	while(1)
 	{
-		alarm_profile = fopen("/home/pi/Raspberry-Pi/Alarm/Profiles/wake_up.alrm");
+		alarm_profile = fopen("/home/pi/Raspberry-Pi/Alarm/Profiles/wake_up.alrm", "rb");
 		fread(&on_off, sizeof(short), 1, alarm_profile);
 		fread(alarm_time, sizeof(short), 2, alarm_profile);
 		fread(&rpt, sizeof(short), 1, alarm_profile);
 		fclose(alarm_profile);
 		test = time(NULL);
 		info = localtime(&test);
-		if(info->tm_hour==wake_hour && info->tm_min==wake_minute)
+		if(info->tm_hour==alarm_time[0] && info->tm_min==alarm_time[1])
 		{
 			mpd_play();
 			if(!rpt)
