@@ -19,7 +19,7 @@ int main()
 {
 	time_t test;
 	struct tm *info;
-	int on_off, alarm_time[2], rpt;
+	short int on_off, alarm_time[2], rpt;
 	FILE *alarm_profile;
 
 	while(1)
