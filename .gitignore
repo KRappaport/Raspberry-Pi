@@ -5,6 +5,7 @@ Alarm/*.txt
 Alarm/set
 Alarm/Alarm_Clock
 Alarm/Set_Alarm
+Alarm/Profiles
 Sleep
 *.txt
 GVoice_Call.c
