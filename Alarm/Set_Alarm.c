@@ -4,7 +4,7 @@ int main(int argc, char const *argv[])
 {
 
     FILE *alarm_profile;
-    short int alarm_time[2], rpt, on-off i=1;
+    short int alarm_time[2], rpt, on-off, i=1;
     int name_length;
     char alarm_name[50], path[100];
 
@@ -18,10 +18,11 @@ int main(int argc, char const *argv[])
         i++;
         strcat(path, "_");
         strcat(path, argv[i]);
+        argc--;
     }
     strcat(path, ".alrm");
 
-    alarm_profile = fopen("/home/pi/Raspberry-Pi/Alarm/Profiles/Wake_Up.txt", "wb");
+    alarm_profile = fopen(path, "wb");
 
     printf("Turn alarm on or off (1 = on, 0 = off): ");
     scanf("%d", &on-off);
@@ -37,6 +38,7 @@ int main(int argc, char const *argv[])
     fwrite(alarm_time, sizeof(short), 2, alarm_profile);
     printf("Choose if alarm should repeat (1 = repeat, 0 = don't repeat): ");
     scanf("%d", &rpt);
+    fwrite(rpt, sizeof(short), 1, alarm_profile);
     printf("OK alarm is set.\n");
 
 
