@@ -4,36 +4,37 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* typedef struct alarm_profile
+{
+	int name_length;
+	char alarm_name[50];
+	short on-off;
+	short hour;
+	short minute;
+}ALARM */
+
 void mpd_play(void);
 
 int main()
 {
 	time_t test;
-	struct tm *info;
-	int wake_hour;
-	int wake_minute;
-	int repeat_boolean;
-	FILE *hour;
-	FILE *minute;
-	FILE *repeat;
+	//struct tm *info;
+	int on-off, alarm_time[2], rpt;
+	FILE *alarm_profile;
 
 	while(1)
 	{
-		hour = fopen("/home/pi/Raspberry-Pi/Alarm/hour.txt", "r");
-		minute = fopen("/home/pi/Raspberry-Pi/Alarm/minute.txt", "r");
-		fscanf(hour, "%d", &wake_hour);
-		fscanf(minute, "%d", &wake_minute);
-		fclose(hour);
-		fclose(minute);
+		alarm_profile = fopen("/home/pi/Raspberry-Pi/Alarm/Profiles/wake_up.alrm");
+		fread(&on-off, sizeof(short), 1, alarm_profile);
+		fread(alarm_time, sizeof(short), 2, alarm_profile);
+		fread(rpt, sizeof(short), 1, alarm_profile);
+		fclose(alarm_profile);
 		test = time(NULL);
 		info = localtime(&test);
 		if(info->tm_hour==wake_hour && info->tm_min==wake_minute)
 		{
 			mpd_play();
-			repeat = fopen("/home/pi/Raspberry-Pi/Alarm/repeat.txt", "r");
-			fscanf(repeat, "%d", &repeat_boolean);
-			fclose(repeat);
-			if(!repeat_boolean)
+			if(!rpt)
 				break;
 		}
 		sleep(5);
@@ -50,7 +51,7 @@ void mpd_play(void){
 		system("mpc stop");
 		sleep(1);
 		system("mpc play");
-		sleep(10);
+		sleep(15);
 		sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
 		fscanf(sound, "%s", sound_check);
 		fclose(sound);
