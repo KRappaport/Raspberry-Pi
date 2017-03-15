@@ -47,7 +47,7 @@ int main()
 			sprintf(vol_change, "mpc volume %d", profile.volume);
 	        system(vol_change);
 			mpd_play();
-			if(!rpt)
+			if(!profile.rpt)
 				break;
 		}
 		else if (alarm_psec < current_psec) {

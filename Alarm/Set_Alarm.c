@@ -16,8 +16,9 @@ int main(int argc, char const *argv[])
 {
 
     FILE *alarm_profile, *profile_list;
-    ALARM profile
+    ALARM profile;
     char path[55];
+    int i=1;
 
     if (argc <= 1) {
         printf("Please provide alarm name:\n");
@@ -65,8 +66,9 @@ int main(int argc, char const *argv[])
     scanf("%hd", &profile.rpt);
     fwrite(&profile.rpt, sizeof(short), 1, alarm_profile);
 
-    printf("Enter alarm volume (0-100):\n", );
+    printf("Enter alarm volume (0-100): ");
     scanf("%hd", &profile.volume);
+    putchar('\n');
     fwrite(&profile.volume, sizeof(short), 1, alarm_profile);
 
     printf("OK alarm is set.\n");
