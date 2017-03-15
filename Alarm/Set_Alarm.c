@@ -62,14 +62,14 @@ int main(int argc, char const *argv[])
     putchar('\n');
     fwrite(profile.alarm_time, sizeof(short), 2, alarm_profile);
 
-    printf("Choose if alarm should repeat (1 = repeat, 0 = don't repeat): ");
-    scanf("%hd", &profile.rpt);
-    fwrite(&profile.rpt, sizeof(short), 1, alarm_profile);
-
     printf("Enter alarm volume (0-100): ");
     scanf("%hd", &profile.volume);
     putchar('\n');
     fwrite(&profile.volume, sizeof(short), 1, alarm_profile);
+
+    printf("Choose if alarm should repeat (1 = repeat, 0 = don't repeat): ");
+    scanf("%hd", &profile.rpt);
+    fwrite(&profile.rpt, sizeof(short), 1, alarm_profile);
 
     printf("OK alarm is set.\n");
 
