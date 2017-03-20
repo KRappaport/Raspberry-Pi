@@ -16,9 +16,9 @@
 
 
 typedef struct alarm_heap{
-	ALARM *heap
+	ALARM *heap;
 	int size;
-}HEAP
+}HEAP;
 
 
 void init_load(HEAP *main_heap, HEAP *reheap) {
@@ -56,7 +56,8 @@ void init_load(HEAP *main_heap, HEAP *reheap) {
 		}
 	/*else if (profile.priority == current_priority) {
 			/* code */
-		} else {
+		//} 
+		else {
 			reheap->heap[reheap->size] = priority;
 			reheap.size++;
 		}
