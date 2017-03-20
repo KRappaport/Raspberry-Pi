@@ -21,7 +21,7 @@ int main()
 	while (1) {
 		current = main_heap->heap[0];
 		main_heap->size--;
-		
+
 		if (current.on_off) {
 			alarm_psec = ((current.alarm_time[0])*HOUR_SEC) + (current.alarm_time[1]*MIN_SEC);
 
@@ -31,7 +31,7 @@ int main()
 				info = localtime(&test);
 				current_psec = (info->tm_hour * HOUR_SEC) + (info->tm_min * MIN_SEC);
 				if(alarm_psec == current_psec) {
-					sprintf(vol_change, "mpc volume %d", profile.volume);
+					sprintf(vol_change, "mpc volume %d", current.volume);
 			        system(vol_change);
 					mpd_play();
 

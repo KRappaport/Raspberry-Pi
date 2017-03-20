@@ -20,6 +20,34 @@ typedef struct alarm_heap{
 	int size;
 }HEAP;
 
+void heapify_down(HEAP *alarm_heap, int i) {
+    int left, right, minimum=i;
+	ALARM temp;
+    left = (2*i) + 1;
+    right = 2*(i + 1);
+
+	if ((left < (alarm_heap->size -1)) && (alarm_heap->heap[left].priority < alarm_heap->heap[minimum].priority)) {
+		minimum = left;
+	}
+	if ((right < (alarm_heap->size -1)) && (alarm_heap->heap[right].priority < alarm_heap->heap[minimum].priority)) {
+		minimum = right;
+	}
+	if (i < minimum) {
+		temp = alarm_heap->heap[i];
+		alarm_heap->heap[i] = alarm_heap->heap[minimum];
+		alarm_heap->heap[minimum] = temp;
+		heapify_down(alarm_heap, minimum);
+	}
+
+}
+
+void heapify(HEAP *notheap) {
+	int i=0;
+
+    for (i = parent(notheap->size); i >= 0; i--) {
+    	heapify_down(notheap, i);
+    }
+}
 
 void init_load(HEAP *main_heap, HEAP *reheap) {
 	int current_priority, i, status;
@@ -51,41 +79,20 @@ void init_load(HEAP *main_heap, HEAP *reheap) {
 		}
 		profile = read_profile(path);
 		if (profile.priority < current_priority) {
-			main_heap->heap[main_heap->size] = priority;
-			main_heap.size++;
+			main_heap->heap[main_heap->size] = profile;
+			main_heap->size++;
 		}
 	/*else if (profile.priority == current_priority) {
 			/* code */
-		//} 
+		//}
 		else {
-			reheap->heap[reheap->size] = priority;
-			reheap.size++;
+			reheap->heap[reheap->size] = profile;
+			reheap->size++;
 		}
 	}
 
 	heapify(main_heap);
 	heapify(reheap);
-
-}
-
-void heapify_down(HEAP *alarm_heap, int i) {
-    int left, right, minimum=i;
-	ALARM temp;
-    left = (2*i) + 1;
-    right = 2*(i + 1);
-
-	if ((left < (alarm_heap->size -1)) && (alarm_heap->heap[left].priority < alarm_heap->heap[minimum].priority)) {
-		minimum = left;
-	}
-	if ((right < (alarm_heap->size -1)) && (alarm_heap->heap[right].priority < alarm_heap->heap[minimum].priority)) {
-		minimum = right;
-	}
-	if (i < minimum) {
-		temp = alarm_heap->heap[i];
-		alarm_heap->heap[i] = alarm_heap->heap[minimum];
-		alarm_heap->heap[minimum] = temp;
-		heapify_down(alarm_heap, minimum);
-	}
 
 }
 
@@ -108,14 +115,6 @@ void insert_to_heap(HEAP *addto, ALARM toadd) {
 		addto->heap[i] = toadd;
 		i = parent(i) + 1;
 	}
-}
-
-void heapify(HEAP *notheap) {
-	int i=0;
-
-    for (i = parent(notheap->size); i >= 0; i--) {
-    	heapify_down(notheap, i);
-    }
 }
 
 void mpd_play(void){
