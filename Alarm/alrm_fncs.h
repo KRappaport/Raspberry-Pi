@@ -78,7 +78,7 @@ void init_load(HEAP *main_heap, HEAP *reheap) {
 			break;
 		}
 		profile = read_profile(path);
-		if (profile.priority < current_priority) {
+		if (profile.priority > current_priority) {
 			main_heap->heap[main_heap->size] = profile;
 			main_heap->size++;
 		}
