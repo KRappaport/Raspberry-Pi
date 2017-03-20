@@ -10,10 +10,10 @@ void mpd_play(void);
 
 int main(int argc, char const *argv[]) {
 
-    int hour=0, minute=0, i;
+    int hour=0, minute=0, volume, vol_bool=0, i;
     long unsigned int sleep_time;
     FILE *sound;
-    char sound_check[100];
+    char sound_check[100], vol_change[14];
 
 //  Checks command-line arguements.
     if(argc > 1){
@@ -26,6 +26,11 @@ int main(int argc, char const *argv[]) {
                 case 'm':
                     minute = atoi((*++argv));
                     argc--;
+                    break;
+                case 'v':
+                    volume = atoi((*++argv));
+                    argc--;
+                    vol_bool = 1;
                     break;
                 default:
                     printf("'\'%s\' is an invalid :\n", (*argv)[1]);
@@ -48,6 +53,12 @@ int main(int argc, char const *argv[]) {
     sound = fopen("/proc/asound/card0/pcm0p/sub0/status", "r");
     fscanf(sound, "%s", sound_check);
     fclose(sound);
+
+    //Change Volume.
+    if (vol_bool) {
+        sprintf(vol_change, "mpc volume %d", volume);
+        system(vol_change);
+    }
 //  Calls mpd_play to turn on music if not already playing.
     if (strcmp(sound_check, "closed") == 0) {
         mpd_play();
