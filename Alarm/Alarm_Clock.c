@@ -11,16 +11,16 @@ int main()
 {
 	time_t test;
 	struct tm *info;
-	HEAP *main_heap, *reheap;
+	HEAP main_heap, reheap;
 	ALARM current;
 	char vol_change[14], path[55];
 	int current_psec, alarm_psec, done;
 
-	init_load(main_heap, reheap);
+	init_load(&main_heap, &reheap);
 
 	while (1) {
-		current = main_heap->heap[0];
-		main_heap->size--;
+		current = main_heap.heap[0];
+		main_heap.size--;
 
 		if (current.on_off) {
 			alarm_psec = ((current.alarm_time[0])*HOUR_SEC) + (current.alarm_time[1]*MIN_SEC);
@@ -52,13 +52,13 @@ int main()
 			}
 		}
 
-		insert_to_heap(reheap, current);
+		insert_to_heap(&reheap, current);
 
-		if (main_heap->size == 0) {
-			heap_swap(main_heap, reheap);
+		if (main_heap.size == 0) {
+			heap_swap(&main_heap, &reheap);
 		} else {
-			main_heap->heap[0] = main_heap->heap[main_heap->size];
-			heapify_down(main_heap, 0);
+			main_heap.heap[0] = main_heap.heap[main_heap.size];
+			heapify_down(&main_heap, 0);
 		}
 
 	}
