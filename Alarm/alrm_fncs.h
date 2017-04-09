@@ -90,6 +90,7 @@ void init_load(HEAP *main_heap, HEAP *reheap) {
 			reheap->size++;
 		}
 	}
+	fclose(profile_list);
 
 	heapify(main_heap);
 	heapify(reheap);
@@ -109,10 +110,10 @@ void insert_to_heap(HEAP *addto, ALARM toadd) {
 	addto->size++;
 	i = addto->size;
 
-	while ((i>1) && (addto->heap[i].priority < addto->heap[parent(i)].priority)) {
+	while ((i>1) && (addto->heap[i-1].priority < addto->heap[parent(i)].priority)) {
 		toadd = addto->heap[parent(i)];
-		addto->heap[parent(i)] = addto->heap[i];
-		addto->heap[i] = toadd;
+		addto->heap[parent(i)] = addto->heap[i-1];
+		addto->heap[i-1] = toadd;
 		i = parent(i) + 1;
 	}
 }

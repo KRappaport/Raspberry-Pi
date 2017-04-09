@@ -18,6 +18,10 @@ int main()
 
 	init_load(&main_heap, &reheap);
 
+	if (main_heap.size == 0) {
+		heap_swap(&main_heap, &reheap);
+	}
+
 	while (1) {
 		current = main_heap.heap[0];
 		main_heap.size--;
